@@ -1,11 +1,15 @@
 {
   "name": "vn-oniria",
   "version": "0.0.1",
+  "main": "oniria.js",
   "scripts": {
     "start": "node ./oniria.js"
   },
   "dependencies": {
-    "ntk": "^2.1.0"
+    "electron": "^1.7.5",
+    "jquery": "^3.2.1",
+    "jsonfile": "^3.0.1",
+    "sqlite3": "^3.1.9"
   },
   "repository": "https://github.com/BakaKiller/vn-oniria",
   "license": "GPL-3.0+"
