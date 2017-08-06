@@ -1,0 +1,11 @@
+{
+  "name": "vn-oniria",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./oniria.js"
+  },
+  "dependencies": {
+    "ntk": "^2.1.0"
+  }
+}
