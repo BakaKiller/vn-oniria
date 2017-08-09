@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
+    <link href="style/main.css" rel="stylesheet"/>
 </head>
-<body>
-<h1>Hello World!</h1>
-<p>
-    This is the best vn ever !
-</p>
-<p>
-    Yet, it has to be created now...
-</p>
+<body class="main">
+<div class="bgholder"></div>
+<div class="content">
+    <h1>Hello World!</h1>
+    <p>
+        This is the best vn ever !
+    </p>
+    <p>
+        Yet, it has to be created now...
+    </p>
+</div>
+<script>
+//    const $ = require('jquery');
+    const sqlite = require('sqlite3');
+    let db = new sqlite.Database('./db/story.db');
+</script>
 </body>
 </html>
