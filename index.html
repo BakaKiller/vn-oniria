@@ -19,7 +19,15 @@
 <script>
     const $ = require('jquery');
     const sqlite = require('sqlite3');
+    let currentpage = 1;
     let db = new sqlite.Database('./db/story.db');
+    db.get('select * from screen where id = ' + currentpage, (err, row) => {
+        if (err) {
+            console.log(err.trace());
+        } else {
+            $('.content').html(row.content);
+        }
+    })
 </script>
 </body>
 </html>
