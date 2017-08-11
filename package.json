@@ -21,8 +21,8 @@
     ]
   },
   "scripts": {
-    "postinstall": "install-app-deps",
     "start": "electron .",
+    "postinstall": "electron-rebuild -w sqlite3 -p",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "build"
   },
@@ -33,6 +33,7 @@
   "repository": "https://github.com/WonderDreamProd/vn-oniria",
   "devDependencies": {
     "electron": "^1.4.10",
-    "electron-builder": "^10.8.1"
+    "electron-builder": "^10.8.1",
+    "electron-rebuild": "^1.6.0"
   }
 }
