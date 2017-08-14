@@ -102,3 +102,9 @@ ul {
     height: 100%;
     margin-top: 12px;
 }
+
+#title {
+    position: absolute;
+    top: 200px;
+    left: 50px;
+}
