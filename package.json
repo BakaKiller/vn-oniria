@@ -3,13 +3,13 @@
   "productName": "Oniria : The VN",
   "description": "The best visual novel ever",
   "version": "0.0.1",
-  "author": "Wonder Dream Prod. <contact@wonder-dream-prod.ovh",
+  "author": "Wonder Dream Prod. <contact@wonderdreamprod.ovh",
   "copyright": "© 2017, Wonder Dream Prod.",
-  "homepage": "http://www.wonder-dream-prod.ovh",
+  "homepage": "http://www.wonderdreamprod.ovh",
   "license": "GPL-3.0+",
   "main": "oniria.js",
   "build": {
-    "appId": "ovh.wonder-dream-prod.oniria-vn",
+    "appId": "ovh.wonderdreamprod.oniria-vn",
     "files": [
       "img/*",
       "node_modules/**/*",
@@ -28,7 +28,8 @@
   },
   "dependencies": {
     "sqlite3": "^3.1.8",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "localize": "^0.4.7"
   },
   "repository": "https://github.com/WonderDreamProd/vn-oniria",
   "devDependencies": {
