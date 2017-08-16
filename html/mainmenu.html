@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>HELLO WORLD</title>
-    <link rel="stylesheet" href="../lib/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../externallibs/bootstrap.min.css"/>
     <link rel="stylesheet" href="../style/main.css"/>
     <script>
         const $ = require('jquery');
@@ -26,24 +26,31 @@
             },
             "Support us": {
                 "fr": "Nous soutenir"
+            },
+            "Exit": {
+                "fr": "Quitter"
             }
         });
+        const funcs = require('../lib.js');
         const sqlite = require('sqlite3');
+        const {shell} = require('electron');
         let db = new sqlite.Database('./db/story.db');
-        db.get('select * from options where optionname = "locale"', (err, row) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log(row.value);
-                local.setLocale(row.value);
-            }
-            console.log(local);
-            $(document).ready(() => {
-                $.each($(".translatable"), (index, value) => {
-                    let node = $('.translatable')[index];
-                    console.log(local.translate($(node).attr('data-locale')));
-                    $(node).html(local.translate($(node).attr('data-locale')));
+        local.setLocale(funcs.getOption('locale'));
+        $(document).ready(() => {
+            $.each($(".translatable"), (index, value) => {
+                let node = $(value);
+                node.html(local.translate(node.attr('data-locale')));
+            });
+            $.each($('.open-external'), (index, value) => {
+                let node = $(value);
+                node.click((e) => {
+                    e.preventDefault();
+                    shell.openExternal(node.attr('href'));
                 });
+            });
+            $('#quit').click((e) => {
+                e.preventDefault();
+                window.close();
             });
         });
 
@@ -53,12 +60,20 @@
 <div class="bgholder"></div>
 <div class="content">
     <div id="head">
-        <img src="../img/fb.png" class="sociallogo" /> http://facebook.com/WonderDreamProd/ -- <img src="../img/twitter.png" class="sociallogo" /> http://twitter.com/WonderDreamProd/
+        <a href="http://facebook.com/WonderDreamProd/" class="open-external"><img src="../img/fb.png"
+                                                                                  class="sociallogo"/>
+            http://facebook.com/WonderDreamProd/</a> -- <a href="http://twitter.com/WonderDreamProd/"
+                                                           class="open-external"><img src="../img/twitter.png"
+                                                                                      class="sociallogo"/>
+        http://twitter.com/WonderDreamProd/</a>
     </div>
     <div id="foot">
-        <img src="../img/copyright.png" class="sociallogo" /> Wonder Dream Prod. 2017 -- Oniria v0.0.1 -- <img src="../img/github.png" class="sociallogo" /> http://github.com/WonderDreamProd/vn-oniria/
+        <img src="../img/copyright.png" class="sociallogo"/> Wonder Dream Prod. 2017 -- Oniria v0.0.1 -- <a
+            href="http://github.com/WonderDreamProd/vn-oniria/" class="open-external"><img src="../img/github.png"
+                                                                                           class="sociallogo"/>
+        http://github.com/WonderDreamProd/vn-oniria/</a>
     </div>
-    <div id="title"><img src="../img/title.png" /></div>
+    <div id="title"><img src="../img/title.png"/></div>
     <div id="menu">
         <ul>
             <li><a href="newgame.html" class="btn translatable" data-locale="New game"></a></li>
@@ -67,6 +82,7 @@
             <li><a href="gallery.html" class="btn translatable" data-locale="Gallery"></a></li>
             <li><a href="credits.html" class="btn translatable" data-locale="Credits"></a></li>
             <li><a href="support.html" class="btn translatable" data-locale="Support us"></a></li>
+            <li><a href="" class="btn translatable" id="quit" data-locale="Exit"></a></li>
         </ul>
     </div>
 </div>

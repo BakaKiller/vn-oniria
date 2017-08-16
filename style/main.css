@@ -2,10 +2,16 @@ html, body {
     background-color: #000000;
     color: #ffffff;
     margin: 0;
+    overflow: hidden;
 }
 
 body > * {
     margin: 0;
+}
+
+a, a:hover {
+    text-decoration: none;
+    color: #ffffff;
 }
 
 @keyframes fadein {
@@ -16,6 +22,16 @@ body > * {
 @keyframes fadeout {
     0% { opacity: 1; }
     100% { opacity: 0; }
+}
+
+@keyframes moveleft {
+    0% { margin-right: -15px; }
+    100% { margin-right: 0; }
+}
+
+@keyframes moveright {
+    0% { margin-right: 0; }
+    100% { margin-right: -15px; }
 }
 
 body.start div.content {
@@ -32,12 +48,15 @@ body.start div.content {
     animation: fadeout 2s 5s forwards;
 }
 
-body.main .bgholder {
+.bgholder {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
+}
+
+body.main .bgholder {
     background-image: url("../img/main.jpg");
     animation: fadein 3s;
 }
@@ -56,6 +75,12 @@ body.main div.content {
 
 ul {
     list-style-type: none;
+}
+
+
+body.options .bgholder {
+    background-image: url('../img/main.jpg');
+    animation: fadein 3s;
 }
 
 #head {
@@ -86,7 +111,7 @@ ul {
 
 #menu {
     position: absolute;
-    top: 70px;
+    top: 50px;
     right: 0;
 }
 
@@ -94,13 +119,23 @@ ul {
     background-image: url('../img/btn.png');
     width: 450px;
     height: 65px;
-    margin-top: 30px;
+    margin-top: 20px;
+    margin-right: -15px;
+}
+
+#menu li:hover {
+    animation: moveleft 500ms 0 forwards;
+}
+
+#menu li:not(:hover) {
+    animation: moveright 500ms 0 forwards;
 }
 
 #menu li .btn {
     width: 100%;
     height: 100%;
     margin-top: 12px;
+    color: #000000;
 }
 
 #title {

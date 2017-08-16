@@ -1,14 +1,23 @@
 const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const url = require('url');
+const sqlite = require('sqlite3');
+const $ = require('jquery');
+let db = new sqlite.Database('./db/story.db');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
 
-function createWindow () {
+function createWindow() {
     // Create the browser window.
-    win = new BrowserWindow({width: 1280, height: 720, frame:false, backgroundColor:'#000000'});
+    console.log('I am there');
+    win = new BrowserWindow({
+        width: 1280,
+        height: 720,
+        frame: false,
+        backgroundColor: '#000000',
+    });
 
     // and load the index.html of the app.
     win.loadURL(url.format({
@@ -17,8 +26,19 @@ function createWindow () {
         slashes: true
     }));
 
+    global.sharedObject = {
+        "options": {}
+    };
+    db.each('select * from options', (err, row) => {
+        if (err) {
+            console.log(err);
+        } else {
+            global.sharedObject.options[row.optionname] = row.value;
+        }
+    });
+
     // Open the DevTools.
-    // win.webContents.openDevTools();
+    win.webContents.openDevTools({"mode": 'detach'});
 
     // Emitted when the window is closed.
     win.on('closed', () => {
