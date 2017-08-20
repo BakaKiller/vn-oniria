@@ -3,6 +3,7 @@ const path = require('path');
 const url = require('url');
 const sqlite = require('sqlite3');
 const $ = require('jquery');
+sqlite.verbose();
 let db = new sqlite.Database('./db/story.db');
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -11,7 +12,6 @@ let win;
 
 function createWindow() {
     // Create the browser window.
-    console.log('I am there');
     win = new BrowserWindow({
         width: 1280,
         height: 720,
@@ -33,6 +33,8 @@ function createWindow() {
         if (err) {
             console.log(err);
         } else {
+            console.log(row.optionname);
+            console.log(row.value);
             global.sharedObject.options[row.optionname] = row.value;
         }
     });

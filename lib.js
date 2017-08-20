@@ -14,14 +14,14 @@ funcs.getOption = (name) => {
 
 funcs.setOption = (name, value) => {
     if (sharedobject.options.hasOwnProperty(name)) {
-        db.run('update options set ? = ?', [name, value], (err) => {
+        db.run('update options set value = ? where optionname = ?', [value, name], (err) => {
             if (err) {
                 console.log(err);
                 return false;
             }
             sharedobject.options[name] = value;
-            return true;
-        })
+            return sharedobject.options[name];
+        });
     } else {
         return false;
     }

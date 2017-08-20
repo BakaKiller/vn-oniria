@@ -8,33 +8,9 @@
     <script>
         const $ = require('jquery');
         let Localize = require('localize');
-        let local = new Localize({
-            "New game": {
-                "fr": "Nouvelle partie"
-            },
-            "Load": {
-                "fr": "Charger"
-            },
-            "Options": {
-                "fr": "Options"
-            },
-            "Gallery": {
-                "fr": "Galerie"
-            },
-            "Credits": {
-                "fr": "Crédits"
-            },
-            "Support us": {
-                "fr": "Nous soutenir"
-            },
-            "Exit": {
-                "fr": "Quitter"
-            }
-        });
+        let local = new Localize('./lang/');
         const funcs = require('../lib.js');
-        const sqlite = require('sqlite3');
         const {shell} = require('electron');
-        let db = new sqlite.Database('./db/story.db');
         local.setLocale(funcs.getOption('locale'));
         $(document).ready(() => {
             $.each($(".translatable"), (index, value) => {
