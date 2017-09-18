@@ -1,10 +1,7 @@
 const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const url = require('url');
-const sqlite = require('sqlite3');
 const $ = require('jquery');
-sqlite.verbose();
-let db = new sqlite.Database('./db/story.db');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -29,18 +26,9 @@ function createWindow() {
     global.sharedObject = {
         "options": {}
     };
-    db.each('select * from options', (err, row) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(row.optionname);
-            console.log(row.value);
-            global.sharedObject.options[row.optionname] = row.value;
-        }
-    });
 
     // Open the DevTools.
-    win.webContents.openDevTools({"mode": 'detach'});
+    // win.webContents.openDevTools({"mode": 'detach'});
 
     // Emitted when the window is closed.
     win.on('closed', () => {

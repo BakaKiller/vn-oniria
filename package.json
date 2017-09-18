@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "author": "Wonder Dream Prod. <contact@wonderdreamprod.ovh",
   "copyright": "© 2017, Wonder Dream Prod.",
-  "homepage": "http://www.wonderdreamprod.ovh",
+  "homepage": "https://www.wonderdreamprod.ovh",
   "license": "GPL-3.0+",
   "main": "oniria.js",
   "build": {
@@ -13,7 +13,6 @@
     "files": [
       "img/*",
       "node_modules/**/*",
-      "db/*",
       "style/*",
       "package.json",
       "oniria.js",
@@ -22,7 +21,6 @@
   },
   "scripts": {
     "start": "electron .",
-    "postinstall": "electron-rebuild -w sqlite3 -p",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "build"
   },
